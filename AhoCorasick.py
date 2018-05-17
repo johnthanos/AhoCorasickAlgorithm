@@ -3,8 +3,8 @@ def gotofunc(pat):
     Go to function of the Aho Corasick Algorithm, it  simply follows edges
     of Trie (automaton)  of all patterns in pat. It is represented as a
     dictionary g{} where we store next state for current state for the character
-    we read, a list d of the depth of each state and an output list for the each nodes.
-    :param pat: list of patterns to create the Trie
+    we read, a list d of the depth of each state and an output list for each node.
+    :param pat: list of patterns to create the Trie and extract alphabet
     :return: g the dictionary of states, output of each state, d list of depths of each state of the automaton
     """
 
@@ -28,34 +28,36 @@ def gotofunc(pat):
             state = newstate
         output[state] = '{},'.format(pat[i])
     # Initialasing the 1st states
-    for a in {'C', 'T', 'A', 'G'}:
+    alphabet = set(''.join(pat))
+    for a in alphabet:
         while not g[(0, a)]:
             g[(0, a)] = 0
 
     return g, output, d
 
 
-def failfunc(g, output):
+def failfunc(g, output, pat):
     """
     Fail Function of the Aho Corasick Algorithm, This function stores all edges that are
           followed when current character doesn't have edge in Trie (Automaton).
     :param g: a dictionary with ste states (nodes) of the Automaton (Trie)
                 and the letter we read with the next state to go
     :param output: a list with the output for each state (node)
+    :param pat: patterns pat, from which to extract the alphabet
     :return: fail: a list with the next state for current state,
     and updated output for subpatterns included in other patterns
     """
     # Initialising fail list, if nothing is found just return to first state
     fail = [0 for t in range(20)]
-
+    alphabet = set(''.join(pat))
     queue = []
-    for a in {'C', 'T', 'A', 'G'}:
+    for a in alphabet:
         if g[(0, a)] != 0:
             queue.append(g[(0, a)])
             fail[g[(0, a)]] = 0
     while queue:
         r = queue.pop(0)
-        for a in {'C', 'T', 'A', 'G'}:
+        for a in alphabet:
             if (r, a) in g:
                 s = g[(r, a)]
 
@@ -80,15 +82,15 @@ if __name__ == "__main__":
     # Creating the Automaton
 
     g, output, d = gotofunc(pat)  # calling goto function
-    fail, output = failfunc(g, output)  # calling failure function
+    fail, output = failfunc(g, output, pat)  # calling failure function
 
     # Several counters
     state = 0
     skip_count = 0
     patterns_found = ","
-    print('The goto function is:\n')
+    print('\nThe goto function is:')
     print(g)
-    print('The failure function is:\n')
+    print('\nThe failure function is:')
     print(fail)
 
     # Pattern Matching Machine Algorithm
@@ -105,7 +107,7 @@ if __name__ == "__main__":
     # print i
     print('\nNumber of compares {}\n'.format(i))
     print('\nWe skip {} compares\n'.format(skip_count))
-    print('Patterns found :{}'.format(patterns_found.strip(',')))
+    print('Patterns found :{}\n'.format(patterns_found.strip(',')))
 
     # counting instances of each pattern
     for j in range(0, 6):
