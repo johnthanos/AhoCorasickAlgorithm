@@ -40,3 +40,6 @@ AC pattern is found 2 times
 ATG pattern is found 4 times 
 
 TGT pattern is found 2 times 
+
+
+This implementation was made by me (Ioannis Thanos) for the course Bioinformatics (Βιοπληοφορική) at Computer Engineer and Informatics Department of the Polytechnic Branch of the University of Patras. 
