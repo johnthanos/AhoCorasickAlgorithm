@@ -105,7 +105,7 @@ if __name__ == "__main__":
     # print i
     print('\nNumber of compares {}\n'.format(i))
     print('\nWe skip {} compares\n'.format(skip_count))
-    print('Patterns found :{}'.format(patterns_found))
+    print('Patterns found :{}'.format(patterns_found.strip(',')))
 
     # counting instances of each pattern
     for j in range(0, 6):
