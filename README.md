@@ -28,7 +28,7 @@ Number of compares 42
 
 We skip 7 compares
 
-Patterns found :,CTA,ATG,TGT,GAATG,ATG,AC,CTA,AC,CCGT,GAATG,ATG,CCGT,TGT,GAATG,ATG,CTA,
+Patterns found :CTA,ATG,TGT,GAATG,ATG,AC,CTA,AC,CCGT,GAATG,ATG,CCGT,TGT,GAATG,ATG,CTA
 
 GAATG pattern is found 3 times 
 
