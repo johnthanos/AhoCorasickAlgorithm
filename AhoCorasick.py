@@ -3,7 +3,7 @@ def gotofunc(pat):
     Go to function of the Aho Corasick Algorithm, it  simply follows edges
     of Trie (automaton)  of all patterns in pat. It is represented as a
     dictionary g{} where we store next state for current state for the character
-    we read, a list d of the depth of each state and an output list for the ending nodes.
+    we read, a list d of the depth of each state and an output list for the each nodes.
     :param pat: list of patterns to create the Trie
     :return: g the dictionary of states, output of each state, d list of depths of each state of the automaton
     """
