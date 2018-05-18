@@ -10,8 +10,8 @@ def gotofunc(pat):
 
     newstate = 0
     g = {}
-    d = [0 for i in range(20)]
-    output = ["" for i in range(20)]
+    d = [0 for i in range(len(''.join(pat)))]
+    output = ["" for i in range(len(''.join(pat)))]
     d[0] = 0
     for i in range(0, len(pat)):
         state = 0
@@ -48,7 +48,7 @@ def failfunc(g, output, pat):
     and updated output for subpatterns included in other patterns
     """
     # Initialising fail list, if nothing is found just return to first state
-    fail = [0 for t in range(20)]
+    fail = [0 for t in range(len(''.join(pat)))]
     alphabet = set(''.join(pat))
     queue = []
     for a in alphabet:
@@ -76,8 +76,8 @@ if __name__ == "__main__":
     Example run with pattern pat, and string s
     """
 
-    pat = ['GAATG', 'CTA', 'CCGT', 'AC', 'ATG', 'TGT']
-    s = 'CTAATGTTGAATGGCCACTACCGTGAATGCCGTGTGAATGCTA'
+    pat = ['GAATG', 'CTA', 'CCGT', 'AC', 'ATG', 'TGT', 'GG', 'CCA', 'GGC']
+    s = 'CTCCAATGTTGAATGGCCACTACCGTGAATGCCGTGTGAATGGCTCCA'
 
     # Creating the Automaton
 
@@ -94,7 +94,7 @@ if __name__ == "__main__":
     print(fail)
 
     # Pattern Matching Machine Algorithm
-    for i in range(0, len(s)):
+    for i in range(len(s)):
         while not ((state, s[i]) in g):
 
             state = fail[state]
@@ -110,7 +110,7 @@ if __name__ == "__main__":
     print('Patterns found :{}\n'.format(patterns_found.strip(',')))
 
     # counting instances of each pattern
-    for j in range(0, 6):
+    for j in range(len(pat)):
         c = 0
         pat_count = 0
         while patterns_found.find(',{},'.format(pat[j]), c) > -1:
